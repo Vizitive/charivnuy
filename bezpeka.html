@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Безпека під час війни — Чарівний сад</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Поради під час війни — Чарівний сад</title>
   <style>
     body {
       margin: 0;
@@ -15,6 +15,7 @@
     /* ===== Верхня панель ===== */
     .top-bar {
       display: flex;
+	  border-radius: 10px;
       justify-content: space-between;
       align-items: center;
       background: linear-gradient(90deg, #a8ff78, #78ffd6);
@@ -44,7 +45,8 @@
 
     /* ===== Заголовок ===== */
     header {
-      background: linear-gradient(135deg, #5ee65e, #32b92b, #a3ff00);
+      background: linear-gradient(135deg, #1cd620, #20e657, #1cd650);
+	  border-radius: 15px;
       color: white;
       text-align: center;
       padding: 25px 10px;
@@ -87,7 +89,8 @@
 
     /* ===== Кнопки ===== */
     .download-link,
-    .back-button {
+    .back-button,
+    .switch-button {
       display: inline-block;
       margin: 10px 8px;
       background: linear-gradient(90deg, #43e97b, #38f9d7);
@@ -102,7 +105,8 @@
     }
 
     .download-link:hover,
-    .back-button:hover {
+    .back-button:hover,
+    .switch-button:hover {
       background: linear-gradient(90deg, #32b92b, #1ee8a7);
       transform: translateY(-3px) scale(1.03);
       box-shadow: 0 6px 16px rgba(50, 185, 43, 0.5);
@@ -119,14 +123,9 @@
     }
 
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 24px;
-      }
-      iframe {
-        height: 70vh;
-      }
-      .download-link,
-      .back-button {
+      header h1 { font-size: 24px; }
+      iframe { height: 70vh; }
+      .download-link, .back-button, .switch-button {
         width: 90%;
         margin: 8px auto;
         display: block;
@@ -160,27 +159,56 @@
 
   <!-- Заголовок -->
   <header>
-    <h1>Безпека під час війни</h1>
+    <h1>Поради під час війни</h1>
   </header>
 
   <!-- Основна частина -->
   <main>
-    <p>На цій сторінці ви можете переглянути документ із порадами щодо дій під час війни:</p>
+    <p>Оберіть документ, який хочете переглянути:</p>
+
+    <div>
+      <!-- Текст кнопок та назви документів змінені відповідно до твого запиту -->
+      <button class="switch-button" onclick="showPDF('bezpeka.pdf', '📘 Безпека учасників освітнього процесу')">
+        Безпека учасників освітнього процесу
+      </button>
+
+      <button class="switch-button" onclick="showPDF('fiz_bezpeka.pdf', '📗 Фізична безпека дітей під час війни')">
+        Фізична безпека дітей під час війни
+      </button>
+    </div>
+
+    <h2 id="pdf-title">📘 Безпека учасників освітнього процесу</h2>
 
     <div class="pdf-container">
-      <!-- Замініть шлях до PDF на свій -->
-      <iframe src="bezpeka.pdf"></iframe>
+      <iframe id="pdf-frame" src="bezpeka.pdf"></iframe>
     </div>
 
     <div>
-      <a href="bezpeka.pdf" class="download-link" download>📥 Завантажити PDF</a>
-      <a href="javascript:history.back()" class="back-button">⬅ Повернутись назад</a>
+      <!-- Замість history.back() тепер посилання на головну -->
+      <a id="download-link" href="bezpeka.pdf" class="download-link" download>📥 Завантажити PDF</a>
+      <a href="index.html" class="back-button">⬅ На головну</a>
     </div>
   </main>
 
   <footer>
     © 2025 Тийгласький ЗДО "Чарівний сад"
   </footer>
+
+  <script>
+    /**
+     * Показує в iframe вказаний файл і оновлює заголовок + посилання на завантаження.
+     * Якщо у тебе інші імена файлів — поміняй 'bezpeka.pdf' і 'porady.pdf' на потрібні.
+     */
+    function showPDF(file, title) {
+      const frame = document.getElementById('pdf-frame');
+      const titleEl = document.getElementById('pdf-title');
+      const download = document.getElementById('download-link');
+
+      frame.src = file;
+      titleEl.innerText = title;
+      download.href = file;
+    }
+  </script>
 
 </body>
 </html>
