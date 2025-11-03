@@ -3,4 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+  <title>Група "Білочка" — Чарівний сад</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3fff3;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Верхня панель з кнопкою */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #ffb36b, #ff8a00, #ff5e00);
+      padding: 12px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .top-bar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .top-bar a:hover {
+      text-shadow: 0 0 8px rgba(255,255,255,0.8);
+    }
+
+    header {
+      background: linear-gradient(135deg, #ffb36b, #ff8a00, #ff5e00);
+      color: white;
+      text-align: center;
+      padding: 25px 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin: 0;
+    }
+
+    main {
+      flex: 1;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .gallery {
+      position: relative;
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transition: opacity 0.4s ease;
+    }
+
+    .gallery button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(135deg, #ff8a00, #ff5e00);
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .gallery button:hover {
+      background: linear-gradient(135deg, #ff5e00, #ffae00);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .caption {
+      margin-top: 10px;
+      font-style: italic;
+      color: #444;
+    }
+
+    footer {
+      background: linear-gradient(90deg, #ffb36b, #ff8a00);
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      color: #fff;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <a href="index.html">⬅ На головну</a>
+  </div>
+
+  <header>
+    <h1>Група "Білочка"</h1>
+  </header>
+
+  <main>
+    <p></p>
+
+    <div class="gallery">
+      <button class="prev" onclick="prevImage()">❮</button>
+      <img id="galleryImage" src="bilochka1.jpg" alt="Фото групи Білочка">
+      <button class="next" onclick="nextImage()">❯</button>
+      <div class="caption" id="caption">Наша весела і дружна група «Білочка» 🐿️</div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Тийгласький ЗДО "Чарівний сад"
+  </footer>
+
+  <script>
+    const images = [
+      { src: "bilochka1.jpg", caption: "Наша весела і дружна група «Білочка» 🐿️" },
+      { src: "bilochka2.jpg", caption: "Свято у групі «Білочка» 🎉" },
+      { src: "bilochka3.jpg", caption: "Творча робота дітей 🎨" }
+    ];
+
+    let current = 0;
+
+    function showImage(index) {
+      const img = document.getElementById("galleryImage");
+      const cap = document.getElementById("caption");
+      img.style.opacity = 0;
+      setTimeout(() => {
+        img.src = images[index].src;
+        cap.textContent = images[index].caption;
+        img.style.opacity = 1;
+      }, 200);
+    }
+
+    function nextImage() {
+      current = (current + 1) % images.length;
+      showImage(current);
+    }
+
+    function prevImage() {
+      current = (current - 1 + images.length) % images.length;
+      showImage(current);
+    }
+  </script>
+
+</body>
+</html>
