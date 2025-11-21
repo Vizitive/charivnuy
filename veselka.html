@@ -2,8 +2,10 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" sizes="192x192" href="Logo6.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Група "Веселка" — Чарівний сад</title>
+
   <style>
     body {
       margin: 0;
@@ -13,7 +15,6 @@
       color: #333;
     }
 
-    /* Верхня панель */
     .top-bar {
       background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb);
       padding: 10px 20px;
@@ -26,13 +27,12 @@
       font-weight: bold;
     }
 
-    /* Заголовок */
     header {
       background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb);
       color: #fff;
       padding: 30px 10px;
       text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     header h1 {
@@ -44,66 +44,62 @@
       padding: 40px 20px;
     }
 
-    main p {
-      font-size: 18px;
-      margin-bottom: 40px;
-    }
-
     /* Фото-блок */
     .photo-block {
       position: relative;
       display: inline-block;
       max-width: 900px;
       width: 100%;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
+      border-radius: 22px;
+      padding: 8px;
+      background: linear-gradient(135deg, #ff9a9e, #fcb69f, #f6d365, #96e6a1, #a1c4fd, #c2e9fb);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
 
     .photo-block img {
       width: 100%;
-      display: block;
-      border-radius: 20px;
+      max-width: 800px;
+      max-height: 600px;
       height: auto;
+      border-radius: 18px;
+      object-fit: contain;
+
+      /* 🔥 ВИРІВНЯННЯ ФОТО */
+      margin: 0 auto;
+      display: block;
     }
 
-    /* Кнопки навігації */
+    /* Кнопки */
     .nav-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb);
-      border: none;
-      color: #fff;
+      background: white;
+      border: 3px solid #ffc2e0;
+      color: #ff6bb5;
       font-size: 28px;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      transition: 0.25s;
     }
 
     .nav-btn:hover {
-      transform: translateY(-50%) scale(1.1);
+      background: #ffdef4;
+      transform: translateY(-50%) scale(1.12);
     }
 
-    .nav-btn.left {
-      left: 20px;
-    }
+    .nav-btn.left { left: 20px; }
+    .nav-btn.right { right: 20px; }
 
-    .nav-btn.right {
-      right: 20px;
-    }
-
-    /* Підпис під фото */
     .caption {
-      background: #fff;
-      padding: 15px;
+      background: #ffffffdd;
+      padding: 18px;
+      font-size: 17px;
       font-style: italic;
-      font-size: 16px;
-      border-top: 1px solid #eee;
+      border-radius: 0 0 14px 14px;
     }
 
     footer {
@@ -111,21 +107,16 @@
       padding: 15px;
       background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb);
       color: #333;
-      box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
     }
 
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 26px;
-      }
-      .nav-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 22px;
-      }
+      header h1 { font-size: 28px; }
+      .nav-btn { width: 45px; height: 45px; font-size: 22px; }
     }
   </style>
 </head>
+
 <body>
   <div class="top-bar">
     <a href="index.html">⬅ На головну</a>
@@ -136,12 +127,9 @@
   </header>
 
   <main>
-    <p>  
-      <br><strong></strong> </p>
-
     <div class="photo-block">
       <button class="nav-btn left" onclick="prevPhoto()">❮</button>
-      <img id="photo" src="veselka1.jpg" alt="Фото групи Веселка" />
+      <img id="photo" src="photos_b/v0.jpg" alt="Фото групи Веселка">
       <button class="nav-btn right" onclick="nextPhoto()">❯</button>
       <div class="caption" id="caption">Кожен день яскравий, бо ми — Веселка! 🌈</div>
     </div>
@@ -152,30 +140,61 @@
   </footer>
 
   <script>
-    const photos = [
-      { src: "veselka1.jpg", caption: "Кожен день яскравий, бо ми — Веселка! 🌈" },
-      { src: "veselka2.jpg", caption: "" },
-      { src: "veselka3.jpg", caption: "" }
-    ];
+  const photos = [
+    { src: "photos_b/v0.jpg", caption: "Кожен день яскравий, бо ми — Веселка! 🌈</" },
+    { src: "photos_b/b1.jpg", caption: "" },
+    { src: "photos_b/b2.jpg", caption: "" },
+    { src: "photos_b/b3.jpg", caption: "" },
+    { src: "photos_b/b4.jpg", caption: "" },
+    { src: "photos_b/b5.jpg", caption: "" },
+    { src: "photos_b/b6.jpg", caption: "" },
+    { src: "photos_b/b7.jpg", caption: "" },
+    { src: "photos_b/b8.jpg", caption: "" },
+    { src: "photos_b/b9.jpg", caption: "" },
+    { src: "photos_b/b10.jpg", caption: "" },
+    { src: "photos_b/b11.jpg", caption: "" },
+    { src: "photos_b/b12.jpg", caption: "" },
+    { src: "photos_b/b13.jpg", caption: "" },
+    { src: "photos_b/b14.jpg", caption: "" },
+    { src: "photos_b/b15.jpg", caption: "" },
+    { src: "photos_b/b16.jpg", caption: "" },
+    { src: "photos_b/b17.jpg", caption: "" },
+    { src: "photos_b/b18.jpg", caption: "" },
+    { src: "photos_b/b19.jpg", caption: "" },
+    { src: "photos_b/b20.jpg", caption: "" },
+    { src: "photos_b/b21.jpg", caption: "" },
+    { src: "photos_b/b22.jpg", caption: "" },
+    { src: "photos_b/b23.jpg", caption: "" },
+    { src: "photos_b/b24.jpg", caption: "" }
+  ];
 
-    let current = 0;
+  let current = 0;
 
-    function showPhoto(index) {
-      const photo = document.getElementById("photo");
-      const caption = document.getElementById("caption");
-      photo.src = photos[index].src;
-      caption.textContent = photos[index].caption;
+  function showPhoto(index) {
+    const img = document.getElementById("photo");
+    const caption = document.getElementById("caption");
+
+    if (!img) {
+      console.error("❌ елемент #photo не знайдено!");
+      return;
     }
 
-    function prevPhoto() {
-      current = (current - 1 + photos.length) % photos.length;
-      showPhoto(current);
-    }
+    img.src = photos[index].src;
+    caption.textContent = photos[index].caption;
+  }
 
-    function nextPhoto() {
-      current = (current + 1) % photos.length;
-      showPhoto(current);
-    }
-  </script>
-</body>
-</html>
+  function prevPhoto() {
+    current = (current - 1 + photos.length) % photos.length;
+    showPhoto(current);
+  }
+
+  function nextPhoto() {
+    current = (current + 1) % photos.length;
+    showPhoto(current);
+  }
+
+  // 🔥 Виправлення: ініціалізація після завантаження DOM
+  document.addEventListener("DOMContentLoaded", () => {
+    showPhoto(0);
+  });
+</script>
