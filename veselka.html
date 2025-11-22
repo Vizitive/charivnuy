@@ -129,7 +129,7 @@
   <main>
     <div class="photo-block">
       <button class="nav-btn left" onclick="prevPhoto()">❮</button>
-      <img id="photo" src="photos_b/v0.jpg" alt="Фото групи Веселка">
+      <img id="photo" src="photos_v/v5.jpg" alt="Фото групи Веселка">
       <button class="nav-btn right" onclick="nextPhoto()">❯</button>
       <div class="caption" id="caption">Кожен день яскравий, бо ми — Веселка! 🌈</div>
     </div>
@@ -140,63 +140,57 @@
   </footer>
 
   <script>
-  const photos = [
-    { src: "photos_b/v0.jpg", caption: "Кожен день яскравий, бо ми — Веселка! 🌈</" },
-    { src: "photos_b/b1.jpg", caption: "" },
-    { src: "photos_b/b2.jpg", caption: "" },
-    { src: "photos_b/b3.jpg", caption: "" },
-    { src: "photos_b/b4.jpg", caption: "" },
-    { src: "photos_b/b5.jpg", caption: "" },
-    { src: "photos_b/b6.jpg", caption: "" },
-    { src: "photos_b/b7.jpg", caption: "" },
-    { src: "photos_b/b8.jpg", caption: "" },
-    { src: "photos_b/b9.jpg", caption: "" },
-    { src: "photos_b/b10.jpg", caption: "" },
-    { src: "photos_b/b11.jpg", caption: "" },
-    { src: "photos_b/b12.jpg", caption: "" },
-    { src: "photos_b/b13.jpg", caption: "" },
-    { src: "photos_b/b14.jpg", caption: "" },
-    { src: "photos_b/b15.jpg", caption: "" },
-    { src: "photos_b/b16.jpg", caption: "" },
-    { src: "photos_b/b17.jpg", caption: "" },
-    { src: "photos_b/b18.jpg", caption: "" },
-    { src: "photos_b/b19.jpg", caption: "" },
-    { src: "photos_b/b20.jpg", caption: "" },
-    { src: "photos_b/b21.jpg", caption: "" },
-    { src: "photos_b/b22.jpg", caption: "" },
-    { src: "photos_b/b23.jpg", caption: "" },
-    { src: "photos_b/b24.jpg", caption: "" }
-  ];
+const photos = [
+  { src: "photos_v/v5.jpg", caption: "Кожен день яскравий, бо ми — Веселка! 🌈" },
+  { src: "photos_v/v1.jpg", caption: "" },
+  { src: "photos_v/v2.jpg", caption: "" },
+  { src: "photos_v/v3.jpg", caption: "" },
+  { src: "photos_v/v4.jpg", caption: "" },
+  { src: "photos_v/v6.jpg", caption: "" },
+  { src: "photos_v/v7.jpg", caption: "" },
+  { src: "photos_v/v8.jpg", caption: "" },
+  { src: "photos_v/v9.jpg", caption: "" },
+  { src: "photos_v/v10.jpg", caption: "" },
+  { src: "photos_v/v11.jpg", caption: "" },
+  { src: "photos_v/v12.jpg", caption: "" },
+  { src: "photos_v/v13.jpg", caption: "" },
+  { src: "photos_v/v14.jpg", caption: "" },
+  { src: "photos_v/v15.jpg", caption: "" },
+  { src: "photos_v/v16.jpg", caption: "" },
+  { src: "photos_v/v17.jpg", caption: "" },
+  { src: "photos_v/v18.jpg", caption: "" },
+  { src: "photos_v/v19.jpg", caption: "" },
+  { src: "photos_v/v20.jpg", caption: "" },
+  { src: "photos_v/v21.jpg", caption: "" },
+  { src: "photos_v/v22.jpg", caption: "" },
+  { src: "photos_v/v23.jpg", caption: "" },
+  { src: "photos_v/v24.jpg", caption: "" }
+];
 
-  let current = 0;
+let current = 0;
 
-  function showPhoto(index) {
-    const img = document.getElementById("photo");
-    const caption = document.getElementById("caption");
+function showPhoto(index) {
+  const img = document.getElementById("photo");
+  const cap = document.getElementById("caption");
 
-    if (!img) {
-      console.error("❌ елемент #photo не знайдено!");
-      return;
-    }
+  img.style.opacity = 0;
 
+  setTimeout(() => {
     img.src = photos[index].src;
-    caption.textContent = photos[index].caption;
-  }
+    cap.textContent = photos[index].caption || "";
+    img.style.opacity = 1;
+  }, 200);
+}
 
-  function prevPhoto() {
-    current = (current - 1 + photos.length) % photos.length;
-    showPhoto(current);
-  }
+function nextPhoto() {
+  current = (current + 1) % photos.length;
+  showPhoto(current);
+}
 
-  function nextPhoto() {
-    current = (current + 1) % photos.length;
-    showPhoto(current);
-  }
-
-  // 🔥 Виправлення: ініціалізація після завантаження DOM
-  document.addEventListener("DOMContentLoaded", () => {
-    showPhoto(0);
-  });
+function prevPhoto() {
+  current = (current - 1 + photos.length) % photos.length;
+  showPhoto(current);
+}
 </script>
 
 
