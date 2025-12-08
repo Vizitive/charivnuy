@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="192x192" href="Logo6.png">
+<title>Новини</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: #f1fff4;
+        font-family: "Comic Sans MS", sans-serif;
+    }
+
+    header {
+        background: linear-gradient(90deg, #43e97b, #38f9d7);
+        padding: 25px;
+        text-align: center;
+        font-size: 30px;
+        color: white;
+        font-weight: bold;
+        text-shadow: 0 2px 3px rgba(0,0,0,0.25);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.20);
+        position: relative;
+    }
+
+    .back-text {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+    }
+
+    .container {
+        flex: 1;
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 26px;
+        margin-top: 10px;
+        color: #177445;
+        font-weight: bold;
+    }
+
+    .events-container {
+        transition: 0.4s ease;
+        opacity: 1;
+    }
+
+    .fade-out {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .fade-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Жива градієнтна рамка */
+.event-item {
+    position: relative;
+    border-radius: 20px;
+    margin: 20px 0;
+    overflow: visible; /* щоб рамка не обрізала фото */
+    padding: 2px; /* зменшили товщину рамки */
+    z-index: 1;
+}
+
+.event-item::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 22px;
+    background: linear-gradient(270deg, #43e97b, #38f9d7, #43e97b, #38f9d7);
+    background-size: 600% 600%;
+    animation: gradientMove 6s ease infinite;
+    z-index: -1;
+}
+
+
+    @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .event-content {
+        position: relative;
+        padding: 18px 22px;
+        z-index: 1;
+        background: white;
+        border-radius: 16px;
+    }
+
+    .event-photo {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 16px 16px 0 0;
+        display: block;
+    }
+
+    .event-title {
+        color: #0e744e;
+        font-size: 22px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .event-text {
+        font-size: 17px;
+        color: #333;
+        line-height: 1.45;
+        margin-bottom: 15px;
+    }
+
+    /* Градієнтна кнопка "Детальніше" */
+    .details-btn {
+        display: inline-block;
+        padding: 10px 25px;
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+        border-radius: 12px;
+        text-decoration: none;
+        transition: 0.25s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .details-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 12px;
+        background: linear-gradient(270deg, #43e97b, #38f9d7, #43e97b, #38f9d7);
+        background-size: 600% 600%;
+        animation: gradientMove 6s ease infinite;
+        z-index: -1;
+    }
+
+    .details-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 14px rgba(0,0,0,0.25);
+    }
+
+    /* Пагінація */
+    .pagination {
+        text-align: center;
+        margin: 40px 0 20px;
+    }
+
+    .page-btn {
+        padding: 10px 22px;
+        margin: 5px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .page-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 12px;
+        background: linear-gradient(270deg, #43e97b, #38f9d7, #43e97b, #38f9d7);
+        background-size: 600% 600%;
+        animation: gradientMove 6s ease infinite;
+        z-index: -1;
+    }
+
+    .page-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .active-page {
+        pointer-events: none;
+    }
+
+    footer {
+        background: linear-gradient(90deg, #43e97b, #38f9d7);
+        padding: 20px;
+        text-align: center;
+        font-size: 20px;
+        color: white;
+        font-weight: bold;
+        box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    Новини
+    <div class="back-text" onclick="history.back()">Назад</div>
+</header>
+
+<div class="container">
+    <h2>Останні події садочка</h2>
+
+    <div id="events" class="events-container"></div>
+
+    <div class="pagination">
+        <span class="page-btn active-page" onclick="loadPage(1)">1</span>
+        <span class="page-btn" onclick="loadPage(2)">2</span>
+    </div>
+</div>
+
+<footer>© 2025 Тийгласький ЗДО "Чарівний сад"</footer>
+
+<script>
+    const pages = {
+        1: [
+            { id: 1, photo: "event1.jpg", title: "Свято осені", text: "Барвисте та тепле свято з виступами дітей та творчими номерами." },
+            { id: 2, photo: "event2.jpg", title: "Ярмарок добрих справ", text: "Діти виготовляли поробки та проводили доброчинний ярмарок." },
+            { id: 3, photo: "event3.jpg", title: "Тиждень безпеки", text: "Практичні заняття, ігри та знайомство з правилами безпеки." }
+        ],
+        2: [
+            { id: 4, photo: "event4.jpg", title: "День здоров'я", text: "Естафети, рухливі ігри та спортивні розваги." },
+            { id: 5, photo: "photos_v/v24.jpg", title: "Казковий ранок", text: "Костюми, театралізація та чарівна атмосфера." },
+            { id: 6, photo: "event6.jpg", title: "Музичний фестиваль", text: "Пісні, танці та знайомство з музичними інструментами." }
+        ]
+    };
+
+    function loadPage(page) {
+        const box = document.getElementById("events");
+        box.classList.add("fade-out");
+
+        setTimeout(() => {
+            box.innerHTML = pages[page].map(event => `
+                <div class="event-item">
+                    <div class="event-content">
+                        <img class="event-photo" src="${event.photo}" alt="${event.title}">
+                        <div class="event-title">${event.title}</div>
+                        <div class="event-text">${event.text}</div>
+                        <a class="details-btn" href="event${event.id}.html">Детальніше</a>
+                    </div>
+                </div>
+            `).join("");
+
+            document.querySelectorAll(".page-btn")
+                .forEach(btn => btn.classList.remove("active-page"));
+            document.querySelectorAll(".page-btn")[page - 1]
+                .classList.add("active-page");
+
+            box.classList.remove("fade-out");
+            box.classList.add("fade-in");
+
+            setTimeout(() => box.classList.remove("fade-in"), 400);
+        }, 300);
+    }
+
+    loadPage(1);
+</script>
+
+</body>
+</html>
+
+
+
+
+
