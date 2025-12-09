@@ -4,135 +4,410 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" sizes="192x192" href="Logo6.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Педагогічний колектив</title>
+  <title>Педагогічний колектив — Чарівний сад</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: "Segoe UI", sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      background: linear-gradient(135deg, #f1fff4 0%, #e6f7ea 100%);
+      color: #333;
+      line-height: 1.6;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    .container {
-      background-color: #f7fff9;
-      border: 4px solid #2ed69b;
-      border-radius: 25px;
-      box-shadow: 0 0 15px rgba(0, 150, 100, 0.3);
-      padding: 40px;
-      max-width: 850px;
-      width: 100%;
-    }
-
-    h1 {
-      text-align: center;
-      color: #00784b;
-      font-size: 2.2em;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      text-align: center;
-      color: #008f5a;
-      margin-bottom: 25px;
-      font-size: 1.6em;
-    }
-
-    p {
-      font-size: 1.15em;
-      line-height: 1.7em;
-      color: #064d34;
-      margin-bottom: 20px;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 25px;
-    }
-
-    ul li {
-      font-size: 1.1em;
-      padding-left: 25px;
-      margin-bottom: 10px;
-      position: relative;
-      color: #064d34;
-    }
-
-    ul li::before {
-      content: "✦";
-      color: #00c87a;
-      position: absolute;
-      left: 0;
-    }
-
-    .staff-box {
+    header {
       background: linear-gradient(90deg, #43e97b, #38f9d7);
-      border: 2px solid #00c080;
-      border-radius: 16px;
-      padding: 25px;
-      margin-top: 25px;
+      color: white;
       text-align: center;
-      font-size: 1.1em;
-      color: #064d34;
-      box-shadow: 0 3px 10px rgba(0, 160, 100, 0.3);
-    }
-
-    .staff-line {
-      margin: 6px 0;
+      padding: 30px 10px;
+      font-size: 32px;
       font-weight: bold;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+      position: relative;
+      margin-bottom: 40px;
     }
 
-    .back-btn {
-      display: block;
-      margin: 35px auto 0;
-      background: linear-gradient(90deg, #43e97b, #38f9d7);
-      border: 2px solid #009f70;
-      border-radius: 30px;
-      padding: 12px 30px;
+    /* Текст "На головну" */
+    .back-link {
+      position: absolute;
+      left: 25px;
+      top: 50%;
+      transform: translateY(-50%);
       color: white;
       text-decoration: none;
-      font-size: 1.1em;
       font-weight: bold;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      transition: 0.25s;
-	  text-align: center;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    
+    .back-link:hover {
+      opacity: 1;
+      text-decoration: underline;
     }
 
-    .back-btn:hover {
-      transform: scale(1.05);
-      background: linear-gradient(90deg, #27e699, #10d4a3);
+    main {
+      max-width: 1000px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+      position: relative;
+      flex: 1;
+    }
+
+    .content-container {
+      background: white;
+      border-radius: 25px;
+      padding: 40px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      
+      /* Градієнтна рамка */
+      border: 8px solid transparent;
+      background-clip: padding-box;
+    }
+    
+    .content-container::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      background: linear-gradient(90deg, #43e97b, #38f9d7, #43e97b);
+      background-size: 300% 100%;
+      border-radius: 30px;
+      z-index: -1;
+      animation: gradientBorder 6s ease infinite;
+    }
+
+    @keyframes gradientBorder {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .page-title {
+      text-align: center;
+      color: #1a5c3a;
+      font-size: 32px;
+      margin-top: 0;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #e1f7e8;
+      position: relative;
+    }
+    
+    .page-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, #43e97b, #38f9d7);
+      border-radius: 3px;
+    }
+
+    .page-subtitle {
+      text-align: center;
+      color: #2a7a4b;
+      font-size: 22px;
+      margin-bottom: 30px;
+      font-style: italic;
+      padding: 10px 0;
+    }
+
+    .intro-text {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #2a5c3a;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #f8fffa;
+      border-radius: 15px;
+      border-left: 5px solid #43e97b;
+    }
+
+    .care-section {
+      margin: 35px 0;
+    }
+    
+    .care-title {
+      color: #2a7a4b;
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .care-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #43e97b, #38f9d7);
+      border-radius: 3px;
+    }
+
+    .care-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .care-item {
+      padding: 18px 20px 18px 60px;
+      margin-bottom: 15px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      position: relative;
+      border: 2px solid #e8f7ec;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .care-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .care-item::before {
+      content: '✓';
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(90deg, #43e97b, #38f9d7);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .staff-container {
+      background: linear-gradient(135deg, rgba(67, 233, 123, 0.1) 0%, rgba(56, 249, 215, 0.1) 100%);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 35px 0;
+      text-align: center;
+      border: 2px solid #e8f7ec;
+    }
+    
+    .staff-title {
+      color: #2a7a4b;
+      font-size: 26px;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .staff-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #43e97b, #38f9d7);
+      border-radius: 3px;
+    }
+    
+    .staff-summary {
+      font-size: 20px;
+      color: #1a5c3a;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+    
+    .staff-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 25px;
+    }
+    
+    .staff-card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-top: 4px solid #43e97b;
+      transition: transform 0.3s ease;
+    }
+    
+    .staff-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .staff-role {
+      color: #43e97b;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    
+    .staff-count {
+      color: #2a5c3a;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    footer {
+      background: linear-gradient(90deg, #43e97b, #38f9d7);
+      text-align: center;
+      padding: 20px;
+      font-size: 16px;
+      color: white;
+      margin-top: auto;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        font-size: 24px;
+        padding: 25px 10px;
+      }
+      
+      .back-link {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        margin: 0 auto 15px;
+        display: inline-block;
+      }
+      
+      main {
+        padding: 0 15px;
+      }
+      
+      .content-container {
+        padding: 25px;
+      }
+      
+      .page-title {
+        font-size: 26px;
+      }
+      
+      .page-subtitle {
+        font-size: 19px;
+      }
+      
+      .intro-text {
+        padding: 15px;
+        font-size: 16px;
+      }
+      
+      .care-item {
+        padding: 15px 15px 15px 50px;
+      }
+      
+      .care-item::before {
+        left: 15px;
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+      }
+      
+      .staff-container {
+        padding: 20px;
+      }
+      
+      .staff-details {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .content-container {
+        padding: 20px;
+      }
+      
+      .page-title {
+        font-size: 22px;
+      }
+      
+      .page-subtitle {
+        font-size: 17px;
+      }
+      
+      .care-title {
+        font-size: 20px;
+      }
+      
+      .staff-title {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Педагогічний колектив</h1>
-    <h2>«Ми створюємо наше майбутнє»</h2>
 
-    <p><strong>Тийгласький ЗДО «Чарівний сад»</strong> — добрий, надійний, сучасний дошкільний навчальний заклад, що дбає про забезпечення права дітей на здобуття дошкільної освіти, створення кожній дитині рівних умов для успішного особистісного розвитку.</p>
+  <header>
+    <a href="index.html" class="back-link">← На головну</a>
+    Педагогічний колектив
+  </header>
 
-    <h3 style="color:#008f5a;">Ми дбаємо:</h3>
-    <ul>
-      <li>про якісний розвиток виховання та навчання з урахуванням індивідуальних здібностей та нахилів;</li>
-      <li>щоб діти були оточені любов’ю, увагою досвідчених педагогів, отримували належне медичне обслуговування та повноцінне харчування;</li>
-      <li>про створення сприятливих умов для гармонійного та різнобічного розвитку особистості дитини, зміцнення психічного, фізичного та духовного здоров’я.</li>
-    </ul>
+  <main>
+    <div class="content-container">
+      <h1 class="page-title">Педагогічний колектив</h1>
+      <div class="page-subtitle">«Ми створюємо наше майбутнє»</div>
 
-    <div class="staff-box">
-      <div class="staff-line">У нашому закладі працює <strong>15 працівників</strong>, з них <strong>5 педагогів</strong>.</div>
-      <div class="staff-line">Завідувач — 1</div>
-      <div class="staff-line">Вихователь — 3</div>
-      <div class="staff-line">Музичний керівник — 1</div>
+      <div class="intro-text">
+        <strong>Тийгласький ЗДО «Чарівний сад»</strong> — добрий, надійний, сучасний дошкільний навчальний заклад, що дбає про забезпечення права дітей на здобуття дошкільної освіти, створення кожній дитині рівних умов для успішного особистісного розвитку.
+      </div>
+
+      <div class="care-section">
+        <h3 class="care-title">Ми дбаємо:</h3>
+        <ul class="care-list">
+          <li class="care-item">про якісний розвиток виховання та навчання з урахуванням індивідуальних здібностей та нахилів;</li>
+          <li class="care-item">щоб діти були оточені любов'ю, увагою досвідчених педагогів, отримували належне медичне обслуговування та повноцінне харчування;</li>
+          <li class="care-item">про створення сприятливих умов для гармонійного та різнобічного розвитку особистості дитини, зміцнення психічного, фізичного та духовного здоров'я.</li>
+        </ul>
+      </div>
+
+      <div class="staff-container">
+        <h3 class="staff-title">Наш колектив</h3>
+        <div class="staff-summary">У нашому закладі працює <strong>15 працівників</strong>, з них <strong>5 педагогів</strong></div>
+        
+        <div class="staff-details">
+          <div class="staff-card">
+            <div class="staff-role">Завідувач</div>
+            <div class="staff-count">1</div>
+          </div>
+          <div class="staff-card">
+            <div class="staff-role">Вихователь</div>
+            <div class="staff-count">3</div>
+          </div>
+          <div class="staff-card">
+            <div class="staff-role">Музичний керівник</div>
+            <div class="staff-count">1</div>
+          </div>
+        </div>
+      </div>
     </div>
+  </main>
 
-    <a href="index.html" class="back-btn">Повернутись у головне меню</a>
-  </div>
+  <footer>© 2025 Тийгласький ЗДО "Чарівний сад"</footer>
+
 </body>
 </html>
-
-
-
-
