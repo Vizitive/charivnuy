@@ -6,25 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Історія закладу — Чарівний сад</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+    
     body {
       font-family: "Segoe UI", Arial, sans-serif;
       margin: 0;
-      background-color: #f7fff7;
+      background: linear-gradient(135deg, #f1fff4 0%, #e6f7ea 100%);
       color: #333;
       line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
       background: linear-gradient(90deg, #43e97b, #38f9d7);
-      color: #1a4d2e;
+      color: white;
       text-align: center;
-      padding: 25px 10px;
-      font-size: 28px;
+      padding: 30px 10px;
+      font-size: 32px;
       font-weight: bold;
       letter-spacing: 0.5px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+      position: relative;
+      margin-bottom: 40px;
     }
 
+    /* Повертаємо оригінальну кнопку Назад */
     .back-button {
       display: inline-block;
       margin: 15px 25px;
@@ -33,143 +44,300 @@
       font-weight: bold;
       font-size: 16px;
       transition: 0.3s;
+      position: absolute;
+      left: 20px;
+      top: 20px;
     }
+    
     .back-button:hover {
       color: #1b4d2e;
       text-decoration: underline;
     }
 
     main {
-      max-width: 950px;
-      margin: 20px auto;
+      max-width: 1000px;
+      margin: 0 auto 40px;
+      padding: 40px;
+      position: relative;
+      flex: 1;
+    }
+
+    .content-container {
       background: white;
-      border-radius: 40px;
-      padding: 30px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+      border-radius: 25px;
+      padding: 40px;
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
       
-      border: 1px solid transparent;
-      background-image: linear-gradient(white, white),
-      linear-gradient(90deg, #43e97b, #38f9d7);
-      background-origin: border-box;
-      background-clip: content-box, border-box;
+      /* Тільки рамка з градієнтом */
+      border: 8px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+    }
+    
+    /* Градієнтна рамка */
+    .content-container::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      background: linear-gradient(90deg, #43e97b, #38f9d7, #43e97b);
+      background-size: 300% 100%;
+      border-radius: 30px;
+      z-index: -1;
+      animation: gradientBorder 6s ease infinite;
+    }
+
+    @keyframes gradientBorder {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     h2 {
       text-align: center;
-      color: #246b3b;
-      font-size: 24px;
+      color: #1a5c3a;
+      font-size: 28px;
       margin-top: 0;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #e1f7e8;
     }
 
     p {
       text-align: justify;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
       font-size: 17px;
+      line-height: 1.7;
     }
 
     ul {
-      margin: 15px 0 20px 40px;
-      padding-left: 15px;
+      margin: 20px 0 25px 0;
+      padding-left: 0;
+      list-style: none;
     }
 
     li {
-      margin-bottom: 7px;
-      font-size: 16px;
+      margin-bottom: 12px;
+      font-size: 17px;
+      padding-left: 35px;
+      position: relative;
+    }
+    
+    li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #43e97b;
+      font-size: 20px;
+      font-weight: bold;
     }
 
     strong {
       color: #1d5d36;
+      font-weight: 600;
     }
 
-    .directors {
-      background: #f4fff5;
+    .address-box {
+      background: #f8fffa;
       padding: 20px 25px;
       border-radius: 12px;
-
-      /* Колонка зліва була тут — переприбрав */
-      border-left: none;
-      margin-top: 25px;
+      margin: 25px 0;
+      border-left: 5px solid #43e97b;
+      font-size: 17px;
     }
 
-    .directors h3 {
+    .directors-section {
+      background: #f8fffa;
+      padding: 30px;
+      border-radius: 18px;
+      margin-top: 35px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+      border: 2px solid #e8f7ec;
+    }
+
+    .directors-section h3 {
       margin-top: 0;
-      margin-bottom: 12px;
+      margin-bottom: 20px;
       color: #2a7a4b;
-      font-size: 20px;
+      font-size: 22px;
+      text-align: center;
     }
 
-    .directors ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .directors-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
     }
-
-    .directors li {
-      margin: 8px 0;
-
-      border-left: none;
-      padding-left: 0;
+    
+    .director-item {
+      background: white;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid #38f9d7;
+    }
+    
+    .director-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .director-period {
+      color: #43e97b;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    
+    .director-name {
+      color: #2a5c3a;
+      font-size: 17px;
     }
 
     footer {
       background: linear-gradient(90deg, #43e97b, #38f9d7);
       text-align: center;
-      padding: 12px;
-      font-size: 14px;
-      color: #1b4d2e;
-      margin-top: 50px;
-      box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      font-size: 16px;
+      color: white;
+      margin-top: auto;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+      font-weight: 500;
+    }
+
+    /* Розділювач */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #43e97b, transparent);
+      margin: 30px 0;
     }
 
     @media (max-width: 768px) {
+      header {
+        font-size: 24px;
+        padding: 25px 10px;
+      }
+      
+      .back-button {
+        position: relative;
+        left: 0;
+        top: 0;
+        margin: 0 auto 15px;
+        display: inline-block;
+      }
+      
       main {
+        padding: 20px;
+      }
+      
+      .content-container {
         padding: 25px;
       }
+      
       h2 {
-        font-size: 20px;
+        font-size: 22px;
+      }
+      
+      .directors-list {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .content-container {
+        padding: 20px;
+      }
+      
+      .directors-section {
+        padding: 20px;
+      }
+      
+      .director-item {
+        padding: 12px 15px;
+      }
+      
+      .back-button {
+        margin: 10px 15px;
+        font-size: 14px;
       }
     }
   </style>
 </head>
 <body>
 
-  <a href="index.html" class="back-button">⬅ На головну</a>
-
-  <header>Історія закладу</header>
+  <header>
+    <a href="index.html" class="back-button">← Назад</a>
+    Історія закладу
+  </header>
 
   <main>
-    <h2>Тийгласький заклад дошкільної освіти «Чарівний сад»</h2>
+    <div class="content-container">
+      <h2>Тийгласький заклад дошкільної освіти «Чарівний сад»</h2>
 
-    <p><strong>Адреса:</strong> поштовий індекс – 89432, Закарпатська область, Ужгородський район, с. Тийглаш, вул. Сечені, буд. 8.</p>
+      <div class="address-box">
+        <strong>Адреса:</strong> поштовий індекс – 89432, Закарпатська область, Ужгородський район, с. Тийглаш, вул. Сечені, буд. 8.
+      </div>
 
-    <ul>
-      <li>Заклад розташований у двоповерховій будівлі.</li>
-      <li>Потужність закладу дошкільної освіти складає 60 місць.</li>
-      <li>Заклад працює за п’ятиденним робочим тижнем.</li>
-      <li>Тривалість денного перебування — 10,5 годин.</li>
-    </ul>
-
-    <p>Тийгласький заклад дошкільної освіти знаходиться на межі двох сіл — <strong>Сюрте</strong> та <strong>Тийглаш</strong>.</p>
-
-    <p>Садок функціонує з <strong>1987 року</strong>. Спочатку заклад знаходився у власності села Сюрте, але у <strong>2003 році</strong> був  перейменований на Тийгласький ДНЗ і перейшов у власність села Тийглаш.</p>
-
-    <p>Освітня робота проводилася у трьох вікових групах. Станом на <strong>1997 рік</strong> у закладі залишилися лише дві різновікові групи. У <strong>2018 році</strong> знову відкрили третю групу. З <strong>2022 року</strong> функціонують лише дві різновікові групи.</p>
-
-    <p>У <strong>2021 році</strong> Тийгласький ДНЗ був перейменований на <strong>Тийгласький заклад дошкільної освіти «Чарівний сад»</strong> Сюртівської сільської ради Ужгородського району Закарпатської області.</p>
-
-    <div class="directors">
-      <h3>Керівники закладу:</h3>
       <ul>
-        <li><strong>1987–2003</strong> — Вароді Клара Яношівна</li>
-        <li><strong>2003–2017</strong> — Паулович Маргарета Федорівна</li>
-        <li><strong>2017–2018</strong> — Варга Моніка Даніелівна</li>
-        <li><strong>2018–2019</strong> — Сечі Сілвія Олександрівна</li>
-        <li><strong>2019–2021</strong> — Горбач Тімеа Людвиківна</li>
-        <li><strong>2021–2022</strong> — Сокач Еріка Олександрівна</li>
-        <li><strong>2022–2025</strong> — Надь Габріелла Амброшівна</li>
-        <li><strong>З 2025 року</strong> — Куртанич Анжеліка Михайлівна</li>
+        <li>Заклад розташований у двоповерховій будівлі.</li>
+        <li>Потужність закладу дошкільної освіти складає 60 місць.</li>
+        <li>Заклад працює за п'ятиденним робочим тижнем.</li>
+        <li>Тривалість денного перебування — 10,5 годин.</li>
       </ul>
+
+      <p>Тийгласький заклад дошкільної освіти знаходиться на межі двох сіл — <strong>Сюрте</strong> та <strong>Тийглаш</strong>.</p>
+
+      <p>Садок функціонує з <strong>1987 року</strong>. Спочатку заклад знаходився у власності села Сюрте, але у <strong>2003 році</strong> був перейменований на Тийгласький ДНЗ і перейшов у власність села Тийглаш.</p>
+
+      <p>Освітня робота проводилася у трьох вікових групах. Станом на <strong>1997 рік</strong> у закладі залишилися лише дві різновікові групи. У <strong>2018 році</strong> знову відкрили третю групу. З <strong>2022 року</strong> функціонують лише дві різновікові групи.</p>
+
+      <p>У <strong>2021 році</strong> Тийгласький ДНЗ був перейменований на <strong>Тийгласький заклад дошкільної освіти «Чарівний сад»</strong> Сюртівської сільської ради Ужгородського району Закарпатської області.</p>
+
+      <div class="divider"></div>
+
+      <div class="directors-section">
+        <h3>Керівники закладу:</h3>
+        <div class="directors-list">
+          <div class="director-item">
+            <div class="director-period">1987–2003</div>
+            <div class="director-name">Вароді Клара Яношівна</div>
+          </div>
+          <div class="director-item">
+            <div class="director-period">2003–2017</div>
+            <div class="director-name">Паулович Маргарета Федорівна</div>
+          </div>
+          <div class="director-item">
+            <div class="director-period">2017–2018</div>
+            <div class="director-name">Варга Моніка Даніелівна</div>
+          </div>
+          <div class="director-item">
+            <div class="director-period">2018–2019</div>
+            <div class="director-name">Сечі Сілвія Олександрівна</div>
+          </div>
+          <div class="director-item">
+            <div class="director-period">2019–2021</div>
+            <div class="director-name">Горбач Тімеа Людвиківна</div>
+          </div>
+          <div class="director-item">
+            <div class="director-period">2021–2022</div>
+            <div class="director-name">Сокач Еріка Олександрівна</div>
+          </div>
+          <div class="director-item">
+            <div class="director-period">2022–2025</div>
+            <div class="director-name">Надь Габріелла Амброшівна</div>
+          </div>
+          <div class="director-item">
+            <div class="director-period">З 2025 року</div>
+            <div class="director-name">Куртанич Анжеліка Михайлівна</div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -177,10 +345,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
