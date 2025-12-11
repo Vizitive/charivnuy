@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" sizes="192x192" href="Logo6.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Протидія булінгу — Чарівний сад</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3fff3;
+      color: #333;
+    }
+
+    /* ===== Кнопка назад у верхньому лівому куті ===== */
+    .back-top {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      z-index: 10;
+    }
+
+    .back-top-link {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .back-top-link:hover {
+      opacity: 0.9;
+      transform: translateX(-3px);
+    }
+
+    .back-top-link:before {
+      content: "←";
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    /* ===== Заголовок ===== */
+    header {
+      position: relative;
+      background: linear-gradient(90deg, #43e97b, #38f9d7);
+	  border-radius: 15px;
+      color: white;
+      text-align: center;
+      padding: 25px 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      margin: 0;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    /* ===== Основна частина ===== */
+    main {
+      padding: 25px 15px;
+      text-align: center;
+    }
+
+    .pdf-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 25px auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+      overflow: hidden;
+      border: 4px solid transparent;
+      background-image: linear-gradient(white, white),
+        linear-gradient(90deg, #64f38c, #43e97b, #38ef7d);
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+    }
+
+    iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+    }
+
+    /* ===== Кнопки ===== */
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .download-link,
+    .switch-button {
+      display: inline-block;
+      margin: 5px;
+      background: linear-gradient(90deg, #43e97b, #38f9d7);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(56, 249, 215, 0.4);
+      border: none;
+      cursor: pointer;
+      min-width: 200px;
+    }
+
+    .download-link:hover,
+    .switch-button:hover {
+      background: linear-gradient(90deg, #32b92b, #1ee8a7);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 16px rgba(50, 185, 43, 0.5);
+    }
+
+    footer {
+      background: linear-gradient(90deg, #a8ff78, #78ffd6);
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      color: #333;
+      margin-top: 40px;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .back-top {
+        left: 15px;
+        top: 8px;
+      }
+      
+      .back-top-link {
+        font-size: 14px;
+      }
+      
+      header h1 { 
+        font-size: 24px; 
+        padding-top: 10px;
+      }
+      
+      iframe { height: 70vh; }
+      
+      .button-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .download-link, .switch-button {
+        width: 90%;
+        min-width: auto;
+        margin: 5px auto;
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Заголовок з кнопкою назад -->
+  <header>
+    <div class="back-top">
+      <a href="index.html" class="back-top-link">На головну</a>
+    </div>
+    <h1>Протидія булінгу</h1>
+  </header>
+
+  <!-- Основна частина -->
+  <main>
+    <p>Оберіть документ, який хочете переглянути:</p>
+
+    <div class="button-container">
+      <!-- Використовую ваші назви файлів -->
+      <button class="switch-button" onclick="showPDF('buling_dlya_ditey.pdf', '📘 Булінг для дітей')">
+        Булінг для дітей
+      </button>
+
+      <button class="switch-button" onclick="showPDF('protidiya_bulingu_v_zakladakh_osviti.pdf', '📗 Протидія булінгу в закладах освіти')">
+        Протидія булінгу в закладах освіти
+      </button>
+      
+      <button class="switch-button" onclick="showPDF('НАКАЗ Про булінг 2025_ -  та подання.pdf', '📄 Наказ про булінг (PDF)')">
+        Наказ про булінг (PDF)
+      </button>
+      
+      <button class="switch-button" onclick="showPDF('Poryadok-podannya-ta-rozglyadu-zayav-po-bulingu.pdf', '📑 Порядок подання заяв по булінгу')">
+        Порядок подання заяв
+      </button>
+    </div>
+
+    <h2 id="pdf-title">📘 Булінг для дітей</h2>
+
+    <div class="pdf-container">
+      <!-- Показуємо PDF безпосередньо в iframe -->
+      <iframe id="pdf-frame" src="buling_dlya_ditey.pdf"></iframe>
+    </div>
+
+    <div>
+      <!-- Завантаження активного документа -->
+      <a id="download-link" href="buling_dlya_ditey.pdf" class="download-link" download>📥 Завантажити PDF</a>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Тийгласький ЗДО "Чарівний сад"
+  </footer>
+
+  <script>
+    /**
+     * Показує в iframe вказаний файл і оновлює заголовок + посилання на завантаження.
+     */
+    function showPDF(file, title) {
+      const frame = document.getElementById('pdf-frame');
+      const titleEl = document.getElementById('pdf-title');
+      const download = document.getElementById('download-link');
+
+      // Встановлюємо новий PDF
+      frame.src = file;
+      
+      // Оновлюємо заголовок
+      titleEl.innerText = title;
+      
+      // Оновлюємо посилання для завантаження
+      download.href = file;
+      
+      // Змінюємо текст кнопки в залежності від типу файлу
+      if (file.includes('.docx')) {
+        download.textContent = '📥 Завантажити DOCX';
+      } else {
+        download.textContent = '📥 Завантажити PDF';
+      }
+    }
+  </script>
+
+</body>
+</html>
